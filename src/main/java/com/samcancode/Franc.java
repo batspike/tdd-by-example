@@ -2,12 +2,13 @@ package com.samcancode;
 
 public class Franc extends Money {
 
-	public Franc(int i) {
-		this.amount = i;
+	public Franc(int amount) {
+		super(amount);
 	}
 
-	public Franc times(int i) {
-		return new Franc(amount * i);
+	@Override
+	public Money times(int multiplier) {
+		return Money.franc(this.amount * multiplier);
 	}
 
 }

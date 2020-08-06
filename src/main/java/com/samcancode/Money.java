@@ -1,8 +1,20 @@
 package com.samcancode;
 
-public class Money {
+public abstract class Money {
 	protected Integer amount;
 	
+	public Money(int amount) { this.amount = amount; }
+	
+	public static Dollar dollar(int amount) {
+		return new Dollar(amount);
+	}
+	
+	public static Franc franc(int amount) {
+		return new Franc(amount);
+	}
+	
+	public abstract Money times(int multiplier);
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
