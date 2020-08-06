@@ -2,7 +2,7 @@ package com.samcancode;
 
 public class Dollar {
 
-	public Integer amount;
+	private Integer amount;
 
 	public Dollar(int i) {
 		this.amount = i;
