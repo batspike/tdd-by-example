@@ -14,10 +14,16 @@ class MoneyTest {
 		product = five.times(3);
 		assertEquals(15, product.amount);// now it will pass after code refactoring
 	}
+	
+	@Test
+	void testEquality() {
+		assertEquals(new Dollar(5), new Dollar(5)); // by default, java equality check if objects points to same object.
+		assertNotEquals(new Dollar(5), new Dollar(8)); 
+	}
 
 }
 /*
- * 1. Write a Test - Think about how the code should work. 2. Make it Run -
- * Quickly get the code working. Make the test Green. 3. Make it Right -
- * Refactor the running code to quality, proper code.
+ * 1. Write a Test - Think about how the code should work. 
+ * 2. Make it Run - Quickly get the code working. Make the test Green. 
+ * 3. Make it Right - Refactor the running code to quality, proper code.
  */
