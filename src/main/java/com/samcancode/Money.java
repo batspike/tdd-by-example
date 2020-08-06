@@ -1,6 +1,6 @@
 package com.samcancode;
 
-public abstract class Money {
+public class Money {
 	public static String currencyDollar = "USD";
 	public static String currencyFranc  = "CHF";
 	
@@ -12,15 +12,17 @@ public abstract class Money {
 		this.currency = currency;
 	}
 	
-	public static Dollar dollar(int amount) {
-		return new Dollar(amount, Money.currencyDollar);
+	public static Money dollar(int amount) {
+		return new Money(amount, Money.currencyDollar);
 	}
 	
-	public static Franc franc(int amount) {
-		return new Franc(amount, Money.currencyFranc);
+	public static Money franc(int amount) {
+		return new Money(amount, Money.currencyFranc);
 	}
 	
-	public abstract Money times(int multiplier);
+	public Money times(int multiplier) {
+		return new Money(this.amount * multiplier, this.currency);
+	}
 	
 	public String currency() {
 		return currency;
@@ -40,7 +42,7 @@ public abstract class Money {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (currency() != ((Money)obj).currency())
 			return false;
 		Money money = (Money) obj;
 		if (amount == null) {
