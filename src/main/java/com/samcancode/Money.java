@@ -1,19 +1,30 @@
 package com.samcancode;
 
 public abstract class Money {
-	protected Integer amount;
+	public static String currencyDollar = "USD";
+	public static String currencyFranc  = "CHF";
 	
-	public Money(int amount) { this.amount = amount; }
+	protected Integer amount;
+	protected String currency;
+	
+	public Money(int amount, String currency) { 
+		this.amount = amount;
+		this.currency = currency;
+	}
 	
 	public static Dollar dollar(int amount) {
-		return new Dollar(amount);
+		return new Dollar(amount, Money.currencyDollar);
 	}
 	
 	public static Franc franc(int amount) {
-		return new Franc(amount);
+		return new Franc(amount, Money.currencyFranc);
 	}
 	
 	public abstract Money times(int multiplier);
+	
+	public String currency() {
+		return currency;
+	}
 
 	@Override
 	public int hashCode() {
