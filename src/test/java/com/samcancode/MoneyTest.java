@@ -21,9 +21,19 @@ class MoneyTest {
 		assertNotEquals(new Dollar(5), new Dollar(8)); 
 	}
 
+	@Test
+	void testMultiplicationFranc() {
+		Franc five = new Franc(5);
+		Franc product = five.times(2);
+		assertEquals(new Franc(10), product);
+		product = five.times(3);
+		assertEquals(new Franc(15), product);
+	}
+	
+	@Test
+	void testEqualityFranc() {
+		assertEquals(new Franc(5), new Franc(5));
+		assertNotEquals(new Franc(5), new Franc(8)); 
+	}
+	
 }
-/*
- * 1. Write a Test - Think about how the code should work. 
- * 2. Make it Run - Quickly get the code working. Make the test Green. 
- * 3. Make it Right - Refactor the running code to quality, proper code.
- */
