@@ -1,6 +1,6 @@
 package com.samcancode;
 
-public class Money {
+public class Money implements Expression {
 	public static String currencyDollar = "USD";
 	public static String currencyFranc  = "CHF";
 	
@@ -27,7 +27,7 @@ public class Money {
 	public String currency() {
 		return currency;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -42,7 +42,7 @@ public class Money {
 			return true;
 		if (obj == null)
 			return false;
-		if (currency() != ((Money)obj).currency())
+		if ( !currency().equalsIgnoreCase(((Money)obj).currency()) )
 			return false;
 		Money money = (Money) obj;
 		if (amount == null) {
@@ -51,6 +51,15 @@ public class Money {
 		} else if (!amount.equals(money.amount))
 			return false;
 		return true;
+	}
+
+	public Expression plus(Money addend) {
+		return new Sum(this, addend);
+	}
+	
+	@Override
+	public Money reduce(String to) {
+		return this;
 	}
 	
 
