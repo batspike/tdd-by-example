@@ -97,22 +97,39 @@ class MoneyTest {
 		assertEquals(1, new Bank().rate(Money.currencyFranc, Money.currencyFranc));
 	}
 	
+	@Test
+	@Order(11)
+	void testMixedAddition() {
+		Expression fiveBucks = Money.dollar(5);
+		Expression tenFrancs = Money.franc(10);
+		Bank bank = new Bank();
+		bank.addRate(Money.currencyFranc,  Money.currencyDollar, 2);
+		Money result = bank.reduce(fiveBucks.plus(tenFrancs), Money.currencyDollar);
+		assertEquals(Money.dollar(10), result);
+	}
 	
+	@Test
+	@Order(12)
+	void testSumPlusMoney() {
+		Expression fiveBucks = Money.dollar(5);
+		Expression tenFrancs = Money.franc(10);
+		Bank bank = new Bank();
+		bank.addRate(Money.currencyFranc,  Money.currencyDollar, 2);
+		Expression sum = new Sum(fiveBucks, tenFrancs).plus(fiveBucks);
+		Money result = bank.reduce(sum, Money.currencyDollar);
+		assertEquals(Money.dollar(15), result);
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@Test
+	@Order(13)
+	void testSumTimes() {
+		Expression fiveBucks = Money.dollar(5);
+		Expression tenFrancs = Money.franc(10);
+		Bank bank = new Bank();
+		bank.addRate(Money.currencyFranc,  Money.currencyDollar, 2);
+		Expression sum = new Sum(fiveBucks, tenFrancs).times(2);
+		Money result = bank.reduce(sum, Money.currencyDollar);
+		assertEquals(Money.dollar(20), result);
+	}
 	
 }
